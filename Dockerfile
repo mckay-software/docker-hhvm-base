@@ -2,8 +2,6 @@ FROM nginx
 MAINTAINER McKay Software <opensource@mckaysoftware.co.nz>
 
 COPY start.sh /start.sh
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY php-fpm.conf /etc/php5/fpm/php-fpm.conf
 RUN apt-get update && apt-get install -y curl \
         php5-redis php5-pgsql php5-mysql php5-gd \
         php5-cli php5-fpm php5-curl php5-intl \
@@ -16,6 +14,9 @@ RUN apt-get update && apt-get install -y curl \
     mkdir /app &&\
     chown nginx:nginx /app &&\
     chmod +x /start.sh
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY php-fpm.conf /etc/php5/fpm/php-fpm.conf
 
 CMD ["/start.sh"]
 WORKDIR /app
