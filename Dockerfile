@@ -11,13 +11,14 @@ RUN apt-get update && apt-get install -y curl \
     apt-get autoremove -y &&\
     apt-get clean &&\
     mkdir /app &&\
-    chown nginx:nginx /app &&\
-    chmod +x /start.sh
+    chown nginx:nginx /app
 
 CMD ["/start.sh"]
 WORKDIR /app
 
 COPY start.sh /start.sh
+RUN chmod +x /start.sh
+
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY php-fpm.conf /etc/php5/fpm/php-fpm.conf
 
