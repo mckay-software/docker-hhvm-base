@@ -4,3 +4,4 @@ chown nginx:nginx /app/.env
 
 php5-fpm
 nginx
+echo Done!
