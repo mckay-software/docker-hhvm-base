@@ -2,5 +2,5 @@
 env | grep sidewinder > /app/.env
 chown nginx:nginx /app/.env
 
-php-fpm &
+php5-fpm &
 nginx
