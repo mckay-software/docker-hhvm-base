@@ -22,5 +22,3 @@ RUN chmod +x /start.sh
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY php-fpm.conf /etc/php5/fpm/php-fpm.conf
-
-USER nginx
