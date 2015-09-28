@@ -2,6 +2,5 @@
 env | grep sidewinder > /app/.env
 chown nginx:nginx /app/.env
 
-php5-fpm
-nginx
+supervisord -c /supervisord.conf
 echo Done!

@@ -1,7 +1,7 @@
 FROM nginx
 MAINTAINER McKay Software <opensource@mckaysoftware.co.nz>
 
-RUN apt-get update && apt-get install -y curl \
+RUN apt-get update && apt-get install -y curl supervisor \
         php5-redis php5-pgsql php5-mysql php5-gd \
         php5-cli php5-fpm php5-curl php5-intl \
         php5-imagick php5-geoip php5-mcrypt &&\
@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y curl \
 CMD ["/start.sh"]
 WORKDIR /app
 
+COPY supervisord.conf /supervisord.conf
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
