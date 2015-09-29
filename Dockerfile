@@ -19,6 +19,6 @@ RUN set -x && export DEBIAN_FRONTEND=noninteractive &&\
 CMD ["/start.sh"]
 WORKDIR /app
 
-COPY start.sh /start.sh
-COPY php.ini /etc/hhvm/php.ini
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY start.sh /
+COPY php.ini /etc/hhvm/
+COPY nginx.conf /etc/nginx/
