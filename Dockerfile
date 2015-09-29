@@ -13,8 +13,9 @@ RUN set -x && export DEBIAN_FRONTEND=noninteractive &&\
     rm composer-installer.php &&\
     apt-get autoremove -y &&\
     apt-get clean &&\
-    rm -r /var/log/nginx &&\
-    mkdir -p /var/log/nginx /app
+    mkdir -p /app /var/log/docker &&\
+    ln -sf /proc/1/fd/1 /var/log/docker/out &&\
+    ln -sf /proc/1/fd/2 /var/log/docker/err
 
 CMD ["/start.sh"]
 WORKDIR /app
