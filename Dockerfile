@@ -8,7 +8,7 @@ RUN set -x && export DEBIAN_FRONTEND=noninteractive &&\
     apt-get update && apt-get install -y hhvm &&\
     cd /opt && hhvm composer-installer.php &&\
     echo '#!/bin/sh' > /usr/bin/composer &&\
-    echo 'hhvm /opt/composer.phar' >> /usr/bin/composer &&\
+    echo 'hhvm /opt/composer.phar $@' >> /usr/bin/composer &&\
     chmod +x /usr/bin/composer &&\
     rm composer-installer.php &&\
     apt-get autoremove -y &&\
