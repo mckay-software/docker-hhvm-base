@@ -1,26 +1,22 @@
 FROM nginx
 MAINTAINER McKay Software <opensource@mckaysoftware.co.nz>
 
-RUN echo 'deb http://ftp.us.debian.org/debian jessie main' >> /etc/apt/sources.list &&\
-    apt-get update && apt-get install -y curl sudo \
-        php5-redis php5-pgsql php5-mysql php5-gd \
-        php5-cli php5-fpm php5-curl php5-intl \
-        php5-imagick php5-geoip php5-mcrypt &&\
-    curl -sS https://getcomposer.org/installer | php &&\
+ADD https://getcomposer.org/installer /composer.installer
+RUN export DEBIAN_FRONTEND=noninteractive &&\
+    apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0x5a16e7281be7a449 &&\
+    echo 'deb http://dl.hhvm.com/debian jessie main' >> /etc/apt/sources.list &&\
+    apt-get update && apt-get install -y hhvm &&\
+    cat /composer.installer | hhvm &&\
     mv composer.phar /usr/bin/composer &&\
-    apt-get remove -y curl &&\
+    rm /composer.installer &&\
     apt-get autoremove -y &&\
     apt-get clean &&\
     rm -r /var/log/nginx &&\
-    mkdir -p /var/log/nginx /var/log/php /app &&\
-    chown nginx:nginx /app
+    mkdir -p /var/log/nginx /app
 
 CMD ["/start.sh"]
 WORKDIR /app
-EXPOSE 8000
 
 COPY start.sh /start.sh
-RUN chmod +x /start.sh
-
+COPY php.ini /etc/hhvm/php.ini
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY php-fpm.conf /etc/php5/fpm/php-fpm.conf

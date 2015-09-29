@@ -1,7 +1,5 @@
 #!/bin/bash
-env | grep sidewinder > /app/.env
-chown nginx:nginx /app/.env
+env | grep -i sidewinder > /app/.env
 
-php5-fpm
+hhvm --mode daemon -vServer.Type=fastcgi -vServer.Port=9000
 nginx
-echo Done!
