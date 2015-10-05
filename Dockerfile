@@ -20,6 +20,8 @@ RUN set -x && export DEBIAN_FRONTEND=noninteractive &&\
 CMD ["/start.sh"]
 WORKDIR /app
 
+ADD https://github.com/PocketRent/hhvm-pgsql/raw/releases/3.7.0/debian/jessie/pgsql.so /etc/hhvm/
+
 COPY start.sh /
 COPY php.ini /etc/hhvm/
 COPY nginx.conf /etc/nginx/
