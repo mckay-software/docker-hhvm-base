@@ -1,3 +1,4 @@
 # SW Website Base
 
-Base image for Sidewinder Website. Downloads packages and sets up server config.
+Base image for Sidewinder Website. Downloads packages, builds extensions,
+and sets up server config.
