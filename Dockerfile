@@ -19,7 +19,8 @@ RUN set -x && export DEBIAN_FRONTEND=noninteractive &&\
     apt-get clean &&\
     mkdir -p /app /var/log/docker &&\
     ln -sf /proc/1/fd/1 /var/log/docker/out &&\
-    ln -sf /proc/1/fd/2 /var/log/docker/err
+    ln -sf /proc/1/fd/2 /var/log/docker/err &&\
+    ln -sf /proc/1/fd/2 /var/log/nginx/err
 
 # Switch back to hhvm-pgsql main repo and branch when it gets fixed for current
 # HHVM version: https://github.com/PocketRent/hhvm-pgsql
