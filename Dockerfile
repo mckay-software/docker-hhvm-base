@@ -2,7 +2,7 @@ FROM nginx
 MAINTAINER McKay Software <opensource@mckaysoftware.co.nz>
 
 ADD https://getcomposer.org/installer /opt/composer-installer.php
-ADD https://deb.nodesource.com/setup_4.x /opt/nodesetup.sh
+ADD https://deb.nodesource.com/setup_5.x /opt/nodesetup.sh
 RUN set -x && export DEBIAN_FRONTEND=noninteractive &&\
     apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0x5a16e7281be7a449 &&\
     echo 'deb http://dl.hhvm.com/debian jessie main' >> /etc/apt/sources.list &&\
