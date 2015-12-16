@@ -1,5 +1,12 @@
-#!/bin/bash
-env | grep -i sidewinder >> /app/.env
+#!/bin/sh
+hhvm --version
+caddy -version
 
-nginx
-hhvm --mode daemon -vServer.Type=fastcgi -vServer.Port=9000
+hhvm \
+  --mode server \
+  -c /etc/hhvm/server.ini \
+  -vServer.Type=fastcgi \
+  -vServer.Port=9000 &
+
+caddy -conf /etc/hhvm/Caddyfile
+
