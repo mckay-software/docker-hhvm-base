@@ -1,4 +1,3 @@
-# SW Website Base
+# HHVM Base
 
-Base image for Sidewinder Website. Downloads packages, builds extensions,
-and sets up server config.
+Base image for McKay Software HHVM-based projects.
